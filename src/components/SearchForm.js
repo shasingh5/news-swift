@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useNavigate, generatePath } from 'react-router-dom';
-import { useGlobalContext } from "../contexts/context";
-
+import { useNavigate, generatePath } from "react-router-dom";
+import { useGlobalContext, NEWSDATAURL } from "../contexts/context";
 
 const Form = styled.form`
   border: 1px solid transparent;
@@ -37,29 +36,36 @@ const useNavigateParams = () => {
   return (url, params) => {
     const path = generatePath(":url?:queryString", {
       url,
-      queryString: params
+      queryString: params,
     });
     navigate(path);
   };
-
-  
 };
 
 const SearchForm = () => {
   // const navigate = useNavigate();
-  const { query, setQuery } = useGlobalContext();
+  const { query, setQuery, getNewsBySearch } = useGlobalContext();
   const navigate = useNavigateParams();
 
   const handleSearch = (e) => {
-    setQuery(e.target.value)
+    setQuery(e.target.value);
     // navigate("searchResults", `q=${query}`);
     // setPage(1);
     // navigate('/search', { query });
-  }
+  };
 
-  const navigateHandler = () => {
+  // const navigateHandler = () => {
+  //   navigate("searchResults", `q=${query}`);
+  //   // setQuery('');
+  // };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     navigate("searchResults", `q=${query}`);
-    // setQuery('');
+    setQuery(`${query}`);
+
+    if (query !== "") getNewsBySearch(`${NEWSDATAURL}&q=${query}`);
+    // alert(`The name you entered was: ${query}`);
   };
 
   // const goSearchPage = () => {
@@ -67,13 +73,16 @@ const SearchForm = () => {
   // }
 
   // useEffect(() => {
-  //   goSearchPage
-  // }, [state]);
+  //   if (query !== "") handleSubmit();
+  // }, [query]);
 
-  
+  //   useEffect(() => {
+  //     // this will trigger when search will get updated
+  //     onSubmit()
+  //  }, [search]);
 
   return (
-    <Form className="d-flex" action='#' onSubmit={(e) => e.preventDefault()}>
+    <Form className="d-flex" action="#" onSubmit={handleSubmit}>
       <input
         className="form-control"
         type="search"
@@ -82,7 +91,7 @@ const SearchForm = () => {
         value={query}
         onChange={(e) => handleSearch(e)}
       />
-      <button type="submit" className="btn btn-outline-success" onClick={navigateHandler}>
+      <button type="submit" className="btn btn-outline-success">
         Search
       </button>
     </Form>

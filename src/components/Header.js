@@ -32,7 +32,7 @@ const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg shadow-sm navbar-dark bg-dark sticky-top">
       <div className="container-fluid">
-        <Logo className="fw-bold" href="/">
+        <Logo className="fw-bold">
           <span>News</span>
           <span>Swift</span>
         </Logo>

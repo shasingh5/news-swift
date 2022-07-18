@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import { useGlobalContext } from "../contexts/context";
+import { useGlobalContext, NEWSDATAURL } from "../contexts/context";
 import NewsCard from "../components/NewsCard";
+import CardListSkeleton from "../components/CardListSkeleton";
 
 const NewsBySearch = () => {
   const { search } = useLocation();
@@ -9,16 +10,17 @@ const NewsBySearch = () => {
   let [searchParams, setSearchParams] = useSearchParams();
   console.log(searchParams.get("q")); // send
   const queryValue = searchParams.get("q");
-  const { searchResults, isLoading } = useGlobalContext();
+  const { searchResults, isLoading, setQuery, query, getNewsBySearch } = useGlobalContext();
+  console.log(queryValue);
+  // setQuery(`${queryValue}`);
 
-  
-  // useEffect(() => {
-  //   setQuery(queryValue);
-  // }, [queryValue]);
+  // if (query !== "") getNewsBySearch(`${NEWSDATAURL}&q=${query}`);
 
-  // if (isLoading) {
-  //   return <h4>Loading...</h4>;
-  // }
+  if (isLoading) {
+    return (
+      <CardListSkeleton title="Search Results" />
+    );
+  }
 
   return (
     <>
@@ -35,7 +37,7 @@ const NewsBySearch = () => {
       <div className="container my-4">
         <h1 className="fs-4 text-center mb-3">Search Results</h1>
         <div className="row">
-          {searchResults.map((currNews, i) => {
+          {searchResults.length > 0 ? searchResults.map((currNews, i) => {
             const { title, image_url, link, pubDate, source_id, category } =
               currNews;
             // let short = description.substring(0, 200);
@@ -56,7 +58,9 @@ const NewsBySearch = () => {
                 />
               </div>
             );
-          })}
+          }) : (
+            <h2 className="text-center">Not results found!!</h2>
+          )}
         </div>
       </div>
     </>

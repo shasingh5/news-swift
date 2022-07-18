@@ -12,8 +12,9 @@ const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [categories, setCategories] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
-  const [query, setQuery] = useState('iphone');
+  const [query, setQuery] = useState('');
   const [category, setCategory] = useState('');
+  const [technology, setTechnology] = useState([]);
   
   // const [isError, setIsError] = useState();
 
@@ -82,31 +83,54 @@ const AppProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
-  }  
+  }
+
+  const getTopHeadlinesByCategory = async (category, pageSize) => {
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(`${newsTopUrl}&country=in&category=${category}&pageSize=${pageSize}`);
+      const data = await response.json();
+      // console.log(data.articles);
+      // console.log(data.status);
+
+      if (data.status === "ok") {
+        setIsLoading(false);
+        console.log(data.articles);
+        setCategories(data.articles);
+      } else {
+        console.log("No news available!!!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
     getNews(`${newsTopUrl}&country=in`);
   }, []);
 
-  useEffect(() => {
-    const timerout = setTimeout(() => {
-      // getNewsBySearch(NEWSDATAURL + `&q=${query}`);
-      getNewsBySearch(`${NEWSDATAURL}&q=${query}`);
-    }, 700);
+  
 
-    return () => clearTimeout(timerout);
+  // useEffect(() => {
+  //   const timerout = setTimeout(() => {
+  //     // getNewsBySearch(NEWSDATAURL + `&q=${query}`);
+  //     getNewsBySearch(`${NEWSDATAURL}&q=${query}`);
+  //   }, 700);
+
+  //   return () => clearTimeout(timerout);
     
-  }, [query]);
+  // }, [query]); 
 
   // useEffect(() => {
   //   getNewsBySearch(`https://newsapi.org/v2/everything?q=${query}&apiKey=${process.env.REACT_APP_NEWS_API}`);
   // }, [query]);
 
-  return <AppContext.Provider value={{ newsItems, isLoading, getNewsByCategory, query, setQuery, searchResults, categories, category }}>{children}</AppContext.Provider>;
+  return <AppContext.Provider value={{ newsItems, isLoading, setIsLoading, getNewsByCategory, query, setQuery, searchResults, categories, category, getTopHeadlinesByCategory, technology, setTechnology, getNewsBySearch }}>{children}</AppContext.Provider>;
 };
 
 const useGlobalContext = () => {
   return useContext(AppContext);
 };
 
-export { AppContext, AppProvider, useGlobalContext };
+export { AppContext, AppProvider, useGlobalContext, newsTopUrl, newsEveryThingUrl, NEWSDATAURL};
