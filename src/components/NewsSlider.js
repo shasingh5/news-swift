@@ -12,12 +12,15 @@ const NewsSlider = () => {
   const { newsItems, isLoading } = useGlobalContext();
 
   const settings = {
+    lazyLoad: true,  
     dots: true,
     infinite: true,
     arrows:false,
+    autoplay: true,
     speed: 500,
+    autoplaySpeed: 2000,
     slidesToShow: 1,
-    slidesToScroll: 1,
+    slidesToScroll: 1
   };
 
   const latestNews = newsItems.slice(0, 5);

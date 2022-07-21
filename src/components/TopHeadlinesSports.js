@@ -41,12 +41,38 @@ const TopHeadlinesSports = () => {
   const latestNews = sports.slice(1);
 
   if (isLoading) {
-    return <h4>Loading...</h4>;
+    return(
+      <div className="col-sm-6">
+        <h2 className="mb-3">Sports</h2>
+        <div className="row">
+          <div className="col mb-4">
+            <HorizontalCardSkeleton />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-6 mb-4">
+            <HorizontalCardSkeleton />
+          </div>
+          <div className="col-sm-6 mb-4">
+            <HorizontalCardSkeleton />
+          </div>
+          <div className="col-sm-6 mb-4">
+            <HorizontalCardSkeleton />
+          </div>
+          <div className="col-sm-6 mb-4">
+            <HorizontalCardSkeleton />
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="col-sm-6">
-      <h2 className="mb-3">Sports</h2>
+      <div className="d-flex justify-content-between">
+        <h2 className="mb-3">Sports</h2>
+        <Link className="btn" to="sports">View All</Link>
+      </div>
       <div className="row">
         <div className="col mb-4">
           {latestNewsOne.map((currNews, i) => {
@@ -66,8 +92,7 @@ const TopHeadlinesSports = () => {
                 source={source.name}
               />
             );
-          })}
-          <HorizontalCardSkeleton />
+          })}          
         </div>
       </div>
 
@@ -76,9 +101,8 @@ const TopHeadlinesSports = () => {
           const { title, urlToImage, url, publishedAt, source } = currNews;
           // let short = description.substring(0, 200);
           return (
-            <div className="col-sm-6 mb-4">
+            <div className="col-sm-6 mb-4" key={i}>
               <HorizontalCard
-                key={i}
                 title={title}
                 urlToImage={
                   urlToImage

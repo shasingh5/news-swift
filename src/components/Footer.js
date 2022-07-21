@@ -22,52 +22,52 @@ const Logo = styled.a`
 
 const Footer = () => {
   return (
-    <footer class="footer mt-auto py-3 bg-dark">
-      <div class="container">
-        <footer class="py-3 my-4">
-          <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item">
-              <Link to="/" class="nav-link px-2 text-muted">
+    <footer className="footer mt-auto py-3 bg-dark">
+      <div className="container">
+        <footer className="py-3 my-4">
+          <ul className="nav justify-content-center border-bottom pb-3 mb-3">
+            <li className="nav-item">
+              <Link to="/" className="nav-link px-2 text-muted">
                 Home
               </Link>
             </li>
-            <li class="nav-item">
-              <Link to="politics" class="nav-link px-2 text-muted">
+            <li className="nav-item">
+              <Link to="general" className="nav-link px-2 text-muted">
                 Politics
               </Link>
             </li>
-            <li class="nav-item">
-              <Link to="business" class="nav-link px-2 text-muted">
+            <li className="nav-item">
+              <Link to="business" className="nav-link px-2 text-muted">
                 Business
               </Link>
             </li>
-            <li class="nav-item">
-              <Link to="technology" class="nav-link px-2 text-muted">
+            <li className="nav-item">
+              <Link to="technology" className="nav-link px-2 text-muted">
                 Technology
               </Link>
             </li>
-            <li class="nav-item">
-              <Link to="entertainment" class="nav-link px-2 text-muted">
+            <li className="nav-item">
+              <Link to="entertainment" className="nav-link px-2 text-muted">
                 Entertainment
               </Link>
             </li>
-            <li class="nav-item">
-              <Link to="sports" class="nav-link px-2 text-muted">
+            <li className="nav-item">
+              <Link to="sports" className="nav-link px-2 text-muted">
                 Sports
               </Link>
             </li>
-            <li class="nav-item">
-              <Link to="science" class="nav-link px-2 text-muted">
+            <li className="nav-item">
+              <Link to="science" className="nav-link px-2 text-muted">
                 Science
               </Link>
             </li>
-            <li class="nav-item">
-              <Link to="health" class="nav-link px-2 text-muted">
+            <li className="nav-item">
+              <Link to="health" className="nav-link px-2 text-muted">
                 Health
               </Link>
             </li>
           </ul>
-          <p class="text-center text-muted">
+          <p className="text-center text-muted">
             <Logo className="fw-bold">
               <span>News</span>
               <span>Swift</span>

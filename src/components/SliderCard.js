@@ -14,6 +14,10 @@ const Image = styled.img`
 
 const Title = styled.h2`
   max-width: 600px;
+
+  @media (max-width: 576px) {
+    font-size: 1rem;
+  }
 `;
 
 const ReadMore = styled.a`
@@ -39,7 +43,6 @@ const ReadMore = styled.a`
 
 const SliderCard = ({
   title,
-  description,
   urlToImage,
   url,
   publishedAt,
@@ -52,8 +55,7 @@ const SliderCard = ({
       </div>
       <div className="card-img-overlay d-flex flex-column justify-content-center">
         <Source>{source}</Source>
-        <Title className="card-title">{title}</Title>
-        <p className="card-text">{description}</p>
+        <Title className="card-title">{title}</Title>        
         <p className="card-text">{publishedAt}</p>
         <ReadMore className="btn" href={url} target="_blank" rel="noreferrer">
           Read more

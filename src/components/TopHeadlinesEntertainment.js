@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useGlobalContext, newsTopUrl } from "../contexts/context";
 import NewsCard from "./NewsCard";
 import HorizontalCard from "./HorizontalCard";
@@ -76,9 +76,8 @@ const TopHeadlinesEntertainment = () => {
           const { title, urlToImage, url, publishedAt, source } = currNews;
           // let short = description.substring(0, 200);
           return (
-            <div className="col-sm-12 mb-4">
-              <HorizontalCard
-                key={i}
+            <div className="col-sm-12 mb-4" key={i}>
+              <HorizontalCard                
                 title={title}
                 urlToImage={
                   urlToImage

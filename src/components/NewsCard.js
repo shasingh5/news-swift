@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import NewsLazyLoadImage from "./NewsLazyLoadImage"
 
 let orange = "#f94144";
 
@@ -72,7 +73,10 @@ const NewsCard = ({ title, urlToImage, url, publishedAt, source, category }) => 
   return (
     <CardWrapper className="card h-100 shadow-sm border-0">
       <div className="ratio ratio-16x9">
-        <img src={urlToImage} className="card-img-top" alt={title} />
+        {
+          //<img src={urlToImage} className="card-img-top fs-6" alt={title} />        
+        }
+        <NewsLazyLoadImage src={urlToImage} alt={title} width="261" height="147" />
       </div>
 
       <div className="card-body">

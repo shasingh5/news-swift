@@ -72,8 +72,8 @@ const Pubdate = styled.p`
 `;
 
 const Ratio = styled.div`
-  img {
-    object-fit: cover;
+  .card-img-top {
+    line-height: inherit;
   }
 
   &.ratio-1x2 {

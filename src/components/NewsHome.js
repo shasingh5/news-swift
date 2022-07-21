@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useGlobalContext } from "../contexts/context";
 import NewsCard from "./NewsCard";
 import moment from 'moment';
+import CardListSkeleton from "./CardListSkeleton";
 
 const NewsHome = () => {
   const { newsItems, isLoading } = useGlobalContext();
@@ -10,19 +12,24 @@ const NewsHome = () => {
   const latestNews = newsItems.slice(5, 13);
 
   if (isLoading) {
-    return <h4>Loading...</h4>;
+    return(
+      <CardListSkeleton className="my-5" title="General" />
+    );
   }
 
   return (
     <div className="container my-4">
-      <h2 className="text-center mb-3">Politics</h2>
+      <div className="d-flex justify-content-between mb-3">
+        <h2>Politics</h2>
+        <Link className="btn btn-view-all" to="general">View All</Link>
+      </div>
       <div className="row">
         {latestNews.map((currNews, i) => {
           const { title, urlToImage, url, publishedAt, source, author } =
             currNews;
           // let short = description.substring(0, 200);          
           return (
-            <div className="col-md-3 mb-4" key={i}>
+            <div className="col-sm-6 col-md-4 col-lg-3 mb-4" key={i}>
             
               <NewsCard
                 title={title}

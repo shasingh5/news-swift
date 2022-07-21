@@ -10,7 +10,7 @@ const Layout = () => {
       <Header />
 
       {/* This Outlet is the place in which react-router will render your components that you need with the navbar */}
-      <main class="flex-shrink-0">
+      <main className="flex-shrink-0">
         <Outlet /> 
       </main>
       

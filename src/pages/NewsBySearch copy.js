@@ -1,13 +1,9 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 // import { useSearchParams } from "react-router-dom";
 import { useGlobalContext } from "../contexts/context";
 import NewsCard from "../components/NewsCard";
 import CardListSkeleton from "../components/CardListSkeleton";
 import NoSearchResults from "../components/NoSearchResults";
-import Spinner from "../components/Spinner";
-// import PropTypes from "prop-types";
-import InfiniteScroll from "react-infinite-scroll-component";
-import moment from "moment";
 
 const NewsBySearch = () => {
   // const { search } = useLocation();
@@ -15,8 +11,7 @@ const NewsBySearch = () => {
   // let [searchParams, setSearchParams] = useSearchParams();
   // console.log(searchParams.get("q")); // send
   // const queryValue = searchParams.get("q");
-  const { searchResults, isLoading, fetchMoreDataBySearch, totalResults, query } =
-    useGlobalContext();
+  const { searchResults, isLoading, query} = useGlobalContext();
   // console.log(queryValue);
   // setQuery(`${queryValue}`);
 
@@ -24,58 +19,26 @@ const NewsBySearch = () => {
   useEffect(() => {
     document.title = "Search Results | NewsSwift";
   }, []);
-
+  debugger
   if (isLoading) {
-    return <CardListSkeleton title="Search Results" />;
+    return (
+      <CardListSkeleton title="Search Results" />
+    );
   }
 
   return (
     <>
-      {
-        // <h1>NewsBySearch</h1>
-        //   <div>
-        //     Query search: {search} {queryValue}
-        //   </div>
-        //   <button type="button" onClick={() => navigate("..")}>
-        //     Back
-        //   </button>
+    {  
+          // <h1>NewsBySearch</h1>
+          //   <div>
+          //     Query search: {search} {queryValue}
+          //   </div>
+          //   <button type="button" onClick={() => navigate("..")}>
+          //     Back
+          //   </button>
       }
 
-      {searchResults.length > 0 ? (
-        <InfiniteScroll
-          dataLength={searchResults.length}
-          next={fetchMoreDataBySearch}
-          hasMore={searchResults.length !== totalResults}
-          loader={<Spinner />}
-        >
-          <div className="container">
-            <h1 className="fs-4 text-center my-4">Search Results</h1>
-            <div className="row">
-              {searchResults.map((element) => {
-                const { title, urlToImage, url, publishedAt, source } = element;
-                return (
-                  <div
-                    className="col-sm-6 col-md-4 col-lg-3 mb-4"
-                    key={element.url}
-                  >
-                    <NewsCard
-                      title={title ? title : ""}
-                      urlToImage={urlToImage}
-                      url={url}
-                      publishedAt={moment(publishedAt).fromNow()}
-                      source={source.name}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </InfiniteScroll>
-      ) : (
-        <NoSearchResults text={query} />
-      )}
-
-      {/* <div className="container my-4">
+      <div className="container my-4">
         <h1 className="fs-4 text-center mb-3">Search Results</h1>
         <div className="row">
           {searchResults.length > 0 ? searchResults.map((currNews, i) => {
@@ -104,7 +67,7 @@ const NewsBySearch = () => {
             <NoSearchResults text={query} />
           )}
         </div>
-      </div> */}
+      </div>
     </>
   );
 };

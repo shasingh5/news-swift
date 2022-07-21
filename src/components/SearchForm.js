@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { useNavigate, generatePath } from "react-router-dom";
-import { useGlobalContext, NEWSDATAURL } from "../contexts/context";
+import { useGlobalContext, newsEveryThingUrl } from "../contexts/context";
+import Notifications, { notify } from "react-notify-toast";
 
 const Form = styled.form`
   border: 1px solid transparent;
@@ -44,8 +44,9 @@ const useNavigateParams = () => {
 
 const SearchForm = () => {
   // const navigate = useNavigate();
-  const { query, setQuery, getNewsBySearch } = useGlobalContext();
+  const { query, setQuery, getNewsBySearch, page } = useGlobalContext();
   const navigate = useNavigateParams();
+  const show = notify.createShowQueue();
 
   const handleSearch = (e) => {
     setQuery(e.target.value);
@@ -60,11 +61,19 @@ const SearchForm = () => {
   // };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate("searchResults", `q=${query}`);
-    setQuery(`${query}`);
+    e.preventDefault();    
 
-    if (query !== "") getNewsBySearch(`${NEWSDATAURL}&q=${query}`);
+    if(!query){
+      show("Please enter search input!!", "error");
+    }else {
+      navigate("searchResults", `q=${query}`);
+      setQuery(`${query}`);
+      // getNewsBySearch(`${NEWSDATAURL}&q=${query}`);
+      getNewsBySearch(`${newsEveryThingUrl}&q=${query}&sortBy=publishedAt&page=${page}&pageSize=8`);
+      document.title = `Search - ${query} | NewsSwift`;
+    }
+
+    // if (query !== " ") getNewsBySearch(`${NEWSDATAURL}&q=${query}`);
     // alert(`The name you entered was: ${query}`);
   };
 
@@ -73,7 +82,7 @@ const SearchForm = () => {
   // }
 
   // useEffect(() => {
-  //   if (query !== "") handleSubmit();
+  //   document.title = `Search - ${query} | NewsSwift`;
   // }, [query]);
 
   //   useEffect(() => {
@@ -82,19 +91,23 @@ const SearchForm = () => {
   //  }, [search]);
 
   return (
-    <Form className="d-flex" action="#" onSubmit={handleSubmit}>
-      <input
-        className="form-control"
-        type="search"
-        placeholder="Search"
-        aria-label="Search"
-        value={query}
-        onChange={(e) => handleSearch(e)}
-      />
-      <button type="submit" className="btn btn-outline-success">
-        Search
-      </button>
-    </Form>
+    <>
+      <Form className="d-flex" action="#" onSubmit={handleSubmit}>
+        <input
+          className="form-control"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          value={query}
+          onChange={(e) => handleSearch(e)}
+        />
+        <button type="submit" className="btn btn-outline-success">
+          <i className="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </Form>
+
+      <Notifications />
+    </>
   );
 };
 

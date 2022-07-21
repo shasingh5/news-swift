@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import NewsLazyLoadImage from "./NewsLazyLoadImage";
 
 const Source = styled.h6`
   font-size: 0.75rem;
@@ -29,24 +30,45 @@ const Title = styled.h5`
   }
 `;
 
-const CardOverlays = ({ title, urlToImage, url, publishedAt, source, ratio = "ratio-1x1" }) => {
+const CardOverlays = ({
+  title,
+  urlToImage,
+  url,
+  publishedAt,
+  source,
+  ratio = "ratio-1x1",
+}) => {
   return (
     <div className="card border-0 rounded-0 text-white overflow-hidden zoom">
       <div className={`ratio ${ratio}`}>
-        <img
+        {
+          // <img
+          //   src={urlToImage}
+          //   className="card-img rounded-0"
+          //   alt={title}
+          // />
+        }
+        <NewsLazyLoadImage
           src={urlToImage}
-          className="card-img rounded-0"
           alt={title}
+          width="200"
+          height="200"
+          className="card-img rounded-0"
         />
       </div>
       <div className="card-img-overlay d-flex align-items-end bg-shadow rounded-0">
         <div>
           <Source className="text-light">{source}</Source>
           <Title>
-            <a href={url} className="card-title" target="_blank" rel="noreferrer">
+            <a
+              href={url}
+              className="card-title"
+              target="_blank"
+              rel="noreferrer"
+            >
               {title}
             </a>
-          </Title>        
+          </Title>
           <p className="card-text">{publishedAt}</p>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import NewsLazyLoadImage from "./NewsLazyLoadImage";
 
 let orange = "#f94144";
 
@@ -17,7 +18,7 @@ const CardWrapper = styled.div`
     }
 
     &:hover {
-      box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 
       img {
         transform: scale(1.1);
@@ -66,11 +67,10 @@ const Pubdate = styled.p`
     font-size: 0.75rem;
     font-weight: 400;
     color: #bbbbbb;
-  }  
+  }
 `;
 
-const Ratio = styled.div` 
-
+const Ratio = styled.div`
   img {
     object-fit: cover;
   }
@@ -80,24 +80,46 @@ const Ratio = styled.div`
   }
 `;
 
-const HorizontalCard = ({ title, urlToImage, url, publishedAt, source, ratio = "ratio-1x1", fontSize }) => {
+const HorizontalCard = (props) => {
+  const {
+    title,
+    urlToImage,
+    url,
+    publishedAt,
+    source,
+    ratio = "ratio-1x1",
+    fontSize,
+  } = props;
   return (
     <CardWrapper className="card shadow-sm border-0">
       <div className="row g-0">
-        <div className="col-md-3">
+        <div className="col-3">
           <Ratio className={`ratio ${ratio}`}>
-            <img
-            src={urlToImage}
-              className="img-fluid rounded-start of-cover"
+            {
+              // <img
+              //   src={urlToImage}
+              //   className="img-fluid rounded-start of-cover"
+              //   alt={title}
+              // />
+            }
+            <NewsLazyLoadImage
+              src={urlToImage}
               alt={title}
+              width="200"
+              height="200"
             />
           </Ratio>
         </div>
-        <div className="col-md-9">
+        <div className="col-9">
           <div className="card-body py-1">
             <Source>{source}</Source>
-            <Title style={{fontSize: fontSize}}>
-              <a href={url} className="card-title" target="_blank" rel="noreferrer">
+            <Title style={{ fontSize: fontSize }}>
+              <a
+                href={url}
+                className="card-title"
+                target="_blank"
+                rel="noreferrer"
+              >
                 {title}
               </a>
             </Title>

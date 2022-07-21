@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useGlobalContext, newsTopUrl } from "../contexts/context";
 import NewsCard from "./NewsCard";
 import HorizontalCard from "./HorizontalCard";
