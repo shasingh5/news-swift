@@ -13,25 +13,22 @@ export default function HomeSeh() {
   return (
     <Section className="py-5 section-seh">
       <div className="container">
-        <div className="row mb-5">
+        <div className="row">
           <div className="col-sm-4">            
             <div className="d-flex justify-content-between mb-3">
-              <h2>Entertainment</h2>
-              <Link className="btn btn-view-all" to="entertainment">View All</Link>
+              <h2>Entertainment</h2>              
             </div>
             <TopHeadlinesEntertainment />
           </div>
           <div className="col-sm-4">            
             <div className="d-flex justify-content-between mb-3">
-              <h2>Health</h2>
-              <Link className="btn btn-view-all" to="health">View All</Link>
+              <h2>Health</h2>              
             </div>
             <TopHeadlinesHealth />
           </div>
           <div className="col-sm-4">            
             <div className="d-flex justify-content-between mb-3">
-              <h2>Science</h2>
-              <Link className="btn btn-view-all" to="science">View All</Link>
+              <h2>Science</h2>              
             </div>
             <TopHeadlinesScience />
           </div>

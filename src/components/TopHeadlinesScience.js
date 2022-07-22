@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useGlobalContext, newsTopUrl } from "../contexts/context";
 import NewsCard from "./NewsCard";
 import HorizontalCard from "./HorizontalCard";
@@ -42,7 +42,13 @@ const TopHeadlinesScience = () => {
   const latestNews = items.slice(1);
 
   if (isLoading) {
-    return <NewsCardSkeleton />;
+    return(
+      <div className="row">
+        <div className="col-12 mb-5 mb-sm-0">
+          <NewsCardSkeleton />
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -93,6 +99,8 @@ const TopHeadlinesScience = () => {
           );
         })}
       </div>
+
+      <Link className="btn btn-view-all" to="science">View All</Link>
     </>
   );
 };

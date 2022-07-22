@@ -19,14 +19,14 @@ const TopHeadlinesByCategories = ({ category, pageSize }) => {
 
   if (isLoading) {
     return (
-      <section className="bg-dark p-5">
+      <section className="bg-dark py-5">
         <div className="container">
           <h2 className="text-light mb-4">Business</h2>
           <div className="row">
             <div className="col-md-6 mb-4 mb-md-0">
               <CardOverlaysSkeleton />
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6 d-none d-md-block">
               <div className="row">
                 <div className="col-6 mb-4">
                   <CardOverlaysSkeleton />

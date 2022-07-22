@@ -47,6 +47,10 @@ body {
     padding: 5px 16px;
     align-items: center;
   }
+
+  .h2, h2 {
+    font-size: calc(1.325rem + .4vw);
+  }
 }
 
 .dark-mode .form-check-input:checked {

@@ -50,16 +50,16 @@ const TopHeadlinesSports = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-sm-6 mb-4">
+          <div className="col-md-6 mb-4">
             <HorizontalCardSkeleton />
           </div>
-          <div className="col-sm-6 mb-4">
+          <div className="col-md-6 mb-4 d-none d-md-block">
             <HorizontalCardSkeleton />
           </div>
-          <div className="col-sm-6 mb-4">
+          <div className="col-md-6 mb-4 d-none d-md-block">
             <HorizontalCardSkeleton />
           </div>
-          <div className="col-sm-6 mb-4">
+          <div className="col-md-6 mb-4 d-none d-md-block">
             <HorizontalCardSkeleton />
           </div>
         </div>

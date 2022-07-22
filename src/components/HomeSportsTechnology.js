@@ -5,7 +5,7 @@ import TopHeadlinesTechnology from "./TopHeadlinesTechnology";
 const HomeSportsTechnology = () => {
   return (
     <section className="container py-5">
-      <div className="row mb-5">
+      <div className="row mb-3">
         <TopHeadlinesSports/>
         <TopHeadlinesTechnology/>
       </div>

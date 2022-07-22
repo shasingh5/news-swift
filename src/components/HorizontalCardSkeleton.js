@@ -85,12 +85,12 @@ const HorizontalCardSkeleton = ({ ratio = "ratio-1x1", fontSize }) => {
   return (
     <CardWrapper className="card border-0">
       <div className="row g-0">
-        <div className="col-md-3">
+        <div className="col-3">
           <Ratio className={`ratio ${ratio}`}>
             <Skeleton className="card-img-top" height="100%" />
           </Ratio>
         </div>
-        <div className="col-md-9">
+        <div className="col-9">
           <div className="card-body py-1">
             <Source className="text-muted">
               <Skeleton width="45%" />
